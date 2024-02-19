@@ -31,14 +31,14 @@ public class UsersController {
         return "students/showAll";
     }
 
-    @GetMapping("/students/viewdelete")
+    @GetMapping("/students/viewDelete")
     public String getDeletePage(Model model) {
         List<Student> allStudents = StudentRepo.findAll();
         model.addAttribute("std", allStudents);
         return "/students/delete";
     }
 
-    @GetMapping("/students/viewadd")
+    @GetMapping("/students/viewAdd")
     public String getAddPage(Model model) {
         List<Student> allStudents = StudentRepo.findAll();
         model.addAttribute("std", allStudents);
