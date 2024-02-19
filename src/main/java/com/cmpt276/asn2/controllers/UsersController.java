@@ -36,6 +36,20 @@ public class UsersController {
         return "students/showAll";
     }
 
+    @GetMapping("/Delete")
+    public String getDeletePage(Model model) {
+        List<Student> allStudents = StudentRepo.findAll();
+        model.addAttribute("std", allStudents);
+        return "students/delete";
+    }
+
+    @GetMapping("/Add")
+    public String getAddPage(Model model) {
+        List<Student> allStudents = StudentRepo.findAll();
+        model.addAttribute("std", allStudents);
+        return "students/add";
+    }
+
     @GetMapping("/Edit")
     public String editDisplay(){
         return "students/edit";
@@ -72,20 +86,5 @@ public class UsersController {
         response.setStatus(400);
         return "students/failed";   
     }
-
-    @GetMapping("/Delete")
-    public String getDeletePage(Model model) {
-        List<Student> allStudents = StudentRepo.findAll();
-        model.addAttribute("std", allStudents);
-        return "/students/delete";
-    }
-
-    @GetMapping("/Add")
-    public String getAddPage(Model model) {
-        List<Student> allStudents = StudentRepo.findAll();
-        model.addAttribute("std", allStudents);
-        return "/students/add";
-    }
-
     
 }
