@@ -31,7 +31,7 @@ public class UsersController {
         return "students/showAll";
     }
 
-    @PostMapping("/students/add")
+    @PostMapping("/Add")
     public String addStudent(@RequestParam Map<String, String> newStudent, HttpServletResponse response){
         System.out.println("ADD student");
 
@@ -47,7 +47,7 @@ public class UsersController {
         return "students/success";
     }
 
-    @PostMapping("/students/delete")
+    @PostMapping("/Delete")
     public String deleteStudent(@RequestParam Map<String, String> Student, HttpServletResponse response){
         System.out.println("Deleting Student with the Name: " + Student.get("name"));
 
