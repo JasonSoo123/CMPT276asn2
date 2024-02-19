@@ -21,6 +21,11 @@ public class UsersController {
     @Autowired
     private StudentRepository StudentRepo;
 
+    @GetMapping("/")
+    public String getHomePage(){
+        return "students/asn2";
+    }
+
     @GetMapping("/Display")
     public String getallStudents(Model model){
         System.out.println("Getting all students");
@@ -29,6 +34,11 @@ public class UsersController {
 
         model.addAttribute("std", students);
         return "students/showAll";
+    }
+
+    @GetMapping("/Edit")
+    public String editDisplay(){
+        return "students/edit";
     }
 
     @PostMapping("/Add")
