@@ -21,7 +21,7 @@ public class UsersController {
     @Autowired
     private StudentRepository StudentRepo;
 
-    @GetMapping("/students/view")
+    @GetMapping("/Display")
     public String getallStudents(Model model){
         System.out.println("Getting all students");
         
@@ -31,14 +31,14 @@ public class UsersController {
         return "students/showAll";
     }
 
-    @GetMapping("/students/viewDelete")
+    @GetMapping("/Delete")
     public String getDeletePage(Model model) {
         List<Student> allStudents = StudentRepo.findAll();
         model.addAttribute("std", allStudents);
         return "/students/delete";
     }
 
-    @GetMapping("/students/viewAdd")
+    @GetMapping("/Add")
     public String getAddPage(Model model) {
         List<Student> allStudents = StudentRepo.findAll();
         model.addAttribute("std", allStudents);
