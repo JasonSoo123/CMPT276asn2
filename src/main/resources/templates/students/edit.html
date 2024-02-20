@@ -12,16 +12,49 @@
 		<div class="row justify-content-center">
 			<div class="col-md-4">
 				<h1 class="text-center mt-5 mb-4">Edit Student</h1>
+                <h2 class="text-center mt-5 mb-4">Students</h2>
+                <ol>
+                    <li th:each="Student:${std}">
+                        <span>Name:</span>
+                        <span th:text="${Student.name}"></span>
+                        <span>,</span>
+                        <span>Weight (kg):</span>
+                        <span th:text="${Student.weight}"></span>
+                        <span>,</span>
+                        <span>Height (cm):</span>
+                        <span th:text="${Student.height}"></span>
+                        <span>,</span>
+                        <span>Hair Color:</span>
+                        <span th:text="${Student.hairColor}"></span>
+                        <span>,</span>
+                        <span>gpa:</span>
+                        <span th:text="${Student.gpa}"></span>
+                        <span>,</span>
+                        <span>age:</span>
+                        <span th:text="${Student.age}"></span> <br>
+                    </li>
+                </ol>
 				<form action="/Edit" method="post">
                     
-                    
+                    <div class="mb-3">
+						<input type="name" id="name" name="name" class="form-control form-control-lg" 
+                            placeholder="Name" onkeyup="checkDeleteAndEdit()">
+					</div>
+
+                    <div class="mb-3">
+						<input type="number" min="0" id="age" name="age" class="form-control form-control-lg" 
+                            placeholder="Age" onkeyup="checkDeleteAndEdit()">
+					</div>
+
                     <div class="d-grid gap-2">
-                        <input class="btn btn-primary" type="submit" value="SEND"></input>
+                        <input class="btn btn-primary" type="submit" value="SEND" disabled="disabled"></input>
                     </div>
                     
 				</form>
 			</div>
 		</div>
 	</div>
+
+<script src="/js/script.js"></script>
 </body>
 </html>

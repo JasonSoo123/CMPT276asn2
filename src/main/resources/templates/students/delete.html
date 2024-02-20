@@ -39,13 +39,18 @@
 					<div class="mb-3">
 						
 						<input type="text" id="name" name="name" class="form-control form-control-lg" 
-                            placeholder="Name">
+                            placeholder="Name" onkeyup="checkDeleteAndEdit()">
+					</div>
+
+                    <div class="mb-3">
+						
+						<input type="number" id="age" name="age" class="form-control form-control-lg" 
+                            placeholder="Age" onkeyup="checkDeleteAndEdit()">
 					</div>
 				
-					<!-- Submit button -->
                     
                     <div class="d-grid gap-2">
-                        <input class="btn btn-primary" type="submit" value="SEND"></input>
+                        <input class="btn btn-primary" type="submit" value="SEND" disabled="disabled"></input>
                     </div>
                     
 				</form>
@@ -53,5 +58,6 @@
 		</div>
 	</div>
 
+<script src="/js/script.js"></script>
 </body>
 </html>
