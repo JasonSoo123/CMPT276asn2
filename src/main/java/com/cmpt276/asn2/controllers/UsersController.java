@@ -53,7 +53,7 @@ public class UsersController {
     }
 
     @GetMapping("/Edit")
-    public String editDisplay(Model model){
+    public String getEditPage(Model model) {
         List<Student> allStudents = StudentRepo.findAll();
         model.addAttribute("std", allStudents);
         return "students/edit";
@@ -96,7 +96,7 @@ public class UsersController {
             return "students/failed"; 
         }  
     }
-    
+
     @PostMapping("/Edit")
     public String editStudent(@RequestParam Map<String, String> Student, Model model, HttpServletResponse response){
         System.out.println("Editing Student with the Name: " + Student.get("name") + " and Age: " + Student.get("age"));
@@ -118,23 +118,28 @@ public class UsersController {
     }
 
     @PostMapping("/Update")
-    public String updateStudent(@ModelAttribute("std") Student student, HttpServletResponse response) {
+    public String updateStudent(@ModelAttribute("std") Student Student, HttpServletResponse response) {
+        
+        Optional<Student> getStudent = StudentRepo.findByUid(Student.getUid());
 
-        Optional<Student> updateStudent = StudentRepo.findByUid(student.getUid());
+        if (getStudent.isPresent()) {
+            
+            Student updateStudent = getStudent.get();
 
-        if (updateStudent.isPresent()) {
-            Student editStudent = updateStudent.get();
-            editStudent.setName(student.getName());
-            editStudent.setWeight(student.getWeight());
-            editStudent.setHeight(student.getHeight());
-            editStudent.setHairColor(student.getHairColor());
-            editStudent.setGpa(student.getGpa());
-            editStudent.setAge(student.getAge());
+            updateStudent.setName(Student.getName());
+            updateStudent.setWeight(Student.getWeight());
+            updateStudent.setHeight(Student.getHeight());
+            updateStudent.setHairColor(Student.getHairColor());
+            updateStudent.setGpa(Student.getGpa());
+            updateStudent.setAge(Student.getAge());
 
-            StudentRepo.save(editStudent);
+            StudentRepo.save(updateStudent);
+
+            response.setStatus(200);
             return "students/success";
+        } else {
+            response.setStatus(400);
+            return "students/failed";
         }
-
-        return "students/failed";
     }
 }
